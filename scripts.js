@@ -1,6 +1,5 @@
 const inputs = document.querySelectorAll('input[type=number]');
 const startBtn = document.querySelector('#start');
-let lastInput;
 
 // const R1 = document.querySelectorAll('input[data-row=R1]');
 // const R2 = document.querySelectorAll('input[data-row=R2]');
@@ -29,42 +28,51 @@ let lastInput;
 
 // const nodeLists = [R1, R2, R3, R4, R5, R6, R7, R8, R9, C1, C2, C3, C4, C5, C6, C7, C8, C9, S1, S2, S3, S4, S5, S6];
 
+// first get 16 random inputs
+// then put in them random nubers from between 1-9
 function startSudoku() {
-  for(let i=0; i<16; i++) {
-    const input = randomInput();
-    const value = randomValue(input);
-    input.value = value;
-    input.readOnly = true;
-  }
+  new Promise((resolve, reject) => {
+    let inputsArr = [];
+    for(let i=0; i<16; i++) {
+      inputsArr.push(randomInput(inputsArr));
+    }
+    resolve(inputsArr);
+  })
+  .then(inputsArr => {
+    inputsArr.forEach(input => {
+      input.value = randomValue(input);
+      input.readOnly = true;
+    });
+  });
 }
 
-function randomInput() {
-  const randInput = Math.floor(Math.random() * 80);
-  if(randInput === lastInput) {
-    return randomInput();
-  }
-
-  lastInput = randInput;
-  return inputs[randInput];
+// get random imputs
+// take care that inputs are unique
+function randomInput(inputsArr) {
+  const randIdx = Math.floor(Math.random() * 81);
+  return inputsArr.includes(inputs[randIdx]) ? randomInput(inputsArr) : inputs[randIdx];  
 }
 
+// take care that numbers in rows, columns and squares are unique
 function randomValue(randomInput) {
   const row = randomInput.dataset.row;
   const col = randomInput.dataset.col;
   const square = randomInput.dataset.square;
   const value = Math.floor((Math.random() * 9) + 1);
 
+  // if there is dupplication in r,c,q - rerun the function
+  let tryAgain = false;
+
   inputs.forEach(input => {
-    if(input.value === value && input !== randomInput && (input.dataset.row === row || input.dataset.col === col || input.dataset.square === square)) {
-      console.log('repeated value', row, col, square);
-      randomValue(randomInput);
+    if(input.value == value && input !== randomInput && (input.dataset.row === row || input.dataset.col === col || input.dataset.square === square)) {
+      tryAgain = true;
     }
-    console.log('repeated value', row, col, square);
   });
 
-  return value;
+  return tryAgain ? randomValue(randomInput) : value;
 }
 
+// findout the elements r,c,q - highlight those areas on enter
 function selectArea(e) {
   const row = e.target.dataset.row;
   const col = e.target.dataset.col;
@@ -72,13 +80,21 @@ function selectArea(e) {
   colorArea(row, col, square);
 }
 
-function leaveArea(e) {
-  const row = e.target.dataset.row;
-  const col = e.target.dataset.col;
-  const square = e.target.dataset.square;
-  clearArea(row, col, square);
+// findout nodes from NodeList
+function colorArea(row, col, square) {
+  inputs.forEach(input => {
+    if(input.dataset.row === row) input.classList.add('select');
+    if(input.dataset.col === col) input.classList.add('select');
+    if(input.dataset.square === square) input.classList.add('select');
+  });
 }
 
+// disable "highlight" on mouseleave
+function clearArea() {
+  inputs.forEach(input => input.classList.remove('select'));
+}
+
+// find nodes with similar values on click
 function selectValues(e) {
   const value = e.target.value;
   if(value) {
@@ -93,38 +109,9 @@ function selectValues(e) {
   }
 }
 
-// function inputChangeHandle(e) {
-//   const value = e.target.value;
-//   const row = e.target.dataset.row;
-//   const col = e.target.dataset.col;
-//   const square = e.target.dataset.square;
-
-//   if(value) {
-//     inputs.forEach(input => {
-//       if(input.value === value && input !== e.target && (input.dataset.row === row || input.dataset.col === col || input.dataset.square === square)) {
-//         colorError(e.target, input);
-//       }
-//       else if(){
-//         clearError(e.target, input);
-//       }
-//     });
-//   }
-// }
-
-function colorArea(row, col, square) {
-  inputs.forEach(input => {
-    if(input.dataset.row === row) input.classList.add('select');
-    if(input.dataset.col === col) input.classList.add('select');
-    if(input.dataset.square === square) input.classList.add('select');
-  });
-}
-
-function clearArea(row, col, square) {
-  inputs.forEach(input => input.classList.remove('select'));
-}
-
-inputs.forEach(input => input.addEventListener('mouseenter', selectArea));
-inputs.forEach(input => input.addEventListener('mouseleave', leaveArea));
-inputs.forEach(input => input.addEventListener('click', selectValues));
-// inputs.forEach(input => input.addEventListener('input', inputChangeHandle));
+inputs.forEach(input => {
+  input.addEventListener('mouseenter', selectArea);
+  input.addEventListener('mouseleave', clearArea);
+  input.addEventListener('click', selectValues);
+});
 startBtn.addEventListener('click', startSudoku);
