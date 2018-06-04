@@ -1,4 +1,7 @@
 const inputs = document.querySelectorAll('input[type=number]');
+const startBtn = document.querySelector('#start');
+let lastInput;
+
 // const R1 = document.querySelectorAll('input[data-row=R1]');
 // const R2 = document.querySelectorAll('input[data-row=R2]');
 // const R3 = document.querySelectorAll('input[data-row=R3]');
@@ -26,6 +29,42 @@ const inputs = document.querySelectorAll('input[type=number]');
 
 // const nodeLists = [R1, R2, R3, R4, R5, R6, R7, R8, R9, C1, C2, C3, C4, C5, C6, C7, C8, C9, S1, S2, S3, S4, S5, S6];
 
+function startSudoku() {
+  for(let i=0; i<16; i++) {
+    const input = randomInput();
+    const value = randomValue(input);
+    input.value = value;
+    input.readOnly = true;
+  }
+}
+
+function randomInput() {
+  const randInput = Math.floor(Math.random() * 80);
+  if(randInput === lastInput) {
+    return randomInput();
+  }
+
+  lastInput = randInput;
+  return inputs[randInput];
+}
+
+function randomValue(randomInput) {
+  const row = randomInput.dataset.row;
+  const col = randomInput.dataset.col;
+  const square = randomInput.dataset.square;
+  const value = Math.floor((Math.random() * 9) + 1);
+
+  inputs.forEach(input => {
+    if(input.value === value && input !== randomInput && (input.dataset.row === row || input.dataset.col === col || input.dataset.square === square)) {
+      console.log('repeated value', row, col, square);
+      randomValue(randomInput);
+    }
+    console.log('repeated value', row, col, square);
+  });
+
+  return value;
+}
+
 function selectArea(e) {
   const row = e.target.dataset.row;
   const col = e.target.dataset.col;
@@ -42,7 +81,6 @@ function leaveArea(e) {
 
 function selectValues(e) {
   const value = e.target.value;
-
   if(value) {
     inputs.forEach(input => {
       if(input.value === value) {
@@ -55,22 +93,38 @@ function selectValues(e) {
   }
 }
 
+// function inputChangeHandle(e) {
+//   const value = e.target.value;
+//   const row = e.target.dataset.row;
+//   const col = e.target.dataset.col;
+//   const square = e.target.dataset.square;
+
+//   if(value) {
+//     inputs.forEach(input => {
+//       if(input.value === value && input !== e.target && (input.dataset.row === row || input.dataset.col === col || input.dataset.square === square)) {
+//         colorError(e.target, input);
+//       }
+//       else if(){
+//         clearError(e.target, input);
+//       }
+//     });
+//   }
+// }
+
 function colorArea(row, col, square) {
   inputs.forEach(input => {
-    if(input.dataset.row === row) input.classList.add('test');
-    if(input.dataset.col === col) input.classList.add('test');
-    if(input.dataset.square === square) input.classList.add('test');
+    if(input.dataset.row === row) input.classList.add('select');
+    if(input.dataset.col === col) input.classList.add('select');
+    if(input.dataset.square === square) input.classList.add('select');
   });
 }
 
 function clearArea(row, col, square) {
-  inputs.forEach(input => {
-    if(input.dataset.row === row) input.classList.remove('test');
-    if(input.dataset.col === col) input.classList.remove('test');
-    if(input.dataset.square === square) input.classList.remove('test');
-  });
+  inputs.forEach(input => input.classList.remove('select'));
 }
 
 inputs.forEach(input => input.addEventListener('mouseenter', selectArea));
 inputs.forEach(input => input.addEventListener('mouseleave', leaveArea));
 inputs.forEach(input => input.addEventListener('click', selectValues));
+// inputs.forEach(input => input.addEventListener('input', inputChangeHandle));
+startBtn.addEventListener('click', startSudoku);

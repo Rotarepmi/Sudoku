@@ -17,6 +17,7 @@ body {
 .app-wrapper {
   height: 100vh;
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
 }
@@ -76,6 +77,10 @@ tr:nth-of-type(9n+0) > td {
   border-bottom-width: 1px;
 }
 
-.test {
+.select {
   background: grey;
+}
+
+.test-er{
+  background: red;
 }
