@@ -1,0 +1,81 @@
+html {
+  box-sizing: border-box;
+  font-size: 10px;
+  background: #ffc600;
+}
+
+*, *:before, *:after {
+  box-sizing: inherit;
+}
+
+body {
+  padding: 0;
+  margin: 0;
+  font-family: 'Amatic SC', cursive;
+}
+
+.app-wrapper {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+input[type=number] {
+  width: 50px;
+  height: 50px;
+  margin: 0;
+  padding: 0;
+  border: none;
+  outline: none;
+  font-size: 45px;
+  line-height: 1;
+  text-align: center;
+}
+
+input[type=number]:hover,
+input[type=number]:focus {
+  background-color: silver;
+}
+
+input[type=number]::-webkit-inner-spin-button, 
+input[type=number]::-webkit-outer-spin-button { 
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  margin: 0; 
+}
+
+tr {
+  padding: 0;
+  margin: 0;
+  border: none;
+  outline: none;
+}
+
+td {
+  padding: 0;
+  margin: 0;
+  border: 1px solid black;
+  outline: none;
+}
+
+td:nth-of-type(3n+0) {
+  border-right-width: 5px;
+}
+
+tr:nth-of-type(3n+0) > td {
+  border-bottom-width: 5px;
+}
+
+td:nth-of-type(9n+0) {
+  border-right-width: 1px;
+}
+
+tr:nth-of-type(9n+0) > td {
+  border-bottom-width: 1px;
+}
+
+.test {
+  background: grey;
+}

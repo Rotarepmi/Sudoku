@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="pl">
+
+<head>
+  <!-- Meta Tag -->
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+  <!-- SEO -->
+  <title>Sudoku</title>
+  <meta name="description" content="">
+
+  <!-- stylings -->
+  <link rel="stylesheet" href="./style.css">
+
+  <!--[if lt IE 9]>
+    <script src = "http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+  <![endif]-->
+</head>
+<body>
+  <main class="app-wrapper">
+    <table cellspacing=0>
+      <tbody>
+        <tr>
+          <td><input type="number" data-row="R1" data-col="C1" data-square="S1" /></td>
+          <td><input type="number" data-row="R1" data-col="C2" data-square="S1" /></td>
+          <td><input type="number" data-row="R1" data-col="C3" data-square="S1" /></td>
+  
+          <td><input type="number" data-row="R1" data-col="C4" data-square="S2" /></td>
+          <td><input type="number" data-row="R1" data-col="C5" data-square="S2" /></td>
+          <td><input type="number" data-row="R1" data-col="C6" data-square="S2" /></td>
+  
+          <td><input type="number" data-row="R1" data-col="C7" data-square="S3" /></td>
+          <td><input type="number" data-row="R1" data-col="C8" data-square="S3" /></td>
+          <td><input type="number" data-row="R1" data-col="C9" data-square="S3" /></td>
+        </tr>
+        <tr>
+          <td><input type="number" data-row="R2" data-col="C1" data-square="S1" /></td>
+          <td><input type="number" data-row="R2" data-col="C2" data-square="S1" /></td>
+          <td><input type="number" data-row="R2" data-col="C3" data-square="S1" /></td>
+  
+          <td><input type="number" data-row="R2" data-col="C4" data-square="S2" /></td>
+          <td><input type="number" data-row="R2" data-col="C5" data-square="S2" /></td>
+          <td><input type="number" data-row="R2" data-col="C6" data-square="S2" /></td>
+  
+          <td><input type="number" data-row="R2" data-col="C7" data-square="S3" /></td>
+          <td><input type="number" data-row="R2" data-col="C8" data-square="S3" /></td>
+          <td><input type="number" data-row="R2" data-col="C9" data-square="S3" /></td>
+        </tr>
+        <tr>
+          <td><input type="number" data-row="R3" data-col="C1" data-square="S1" /></td>
+          <td><input type="number" data-row="R3" data-col="C2" data-square="S1" /></td>
+          <td><input type="number" data-row="R3" data-col="C3" data-square="S1" /></td>
+  
+          <td><input type="number" data-row="R3" data-col="C4" data-square="S2" /></td>
+          <td><input type="number" data-row="R3" data-col="C5" data-square="S2" /></td>
+          <td><input type="number" data-row="R3" data-col="C6" data-square="S2" /></td>
+  
+          <td><input type="number" data-row="R3" data-col="C7" data-square="S3" /></td>
+          <td><input type="number" data-row="R3" data-col="C8" data-square="S3" /></td>
+          <td><input type="number" data-row="R3" data-col="C9" data-square="S3" /></td>
+        </tr>
+  
+        <tr>
+          <td><input type="number" data-row="R4" data-col="C1" data-square="S4" /></td>
+          <td><input type="number" data-row="R4" data-col="C2" data-square="S4" /></td>
+          <td><input type="number" data-row="R4" data-col="C3" data-square="S4" /></td>
+  
+          <td><input type="number" data-row="R4" data-col="C4" data-square="S5" /></td>
+          <td><input type="number" data-row="R4" data-col="C5" data-square="S5" /></td>
+          <td><input type="number" data-row="R4" data-col="C6" data-square="S5" /></td>
+  
+          <td><input type="number" data-row="R4" data-col="C7" data-square="S6" /></td>
+          <td><input type="number" data-row="R4" data-col="C8" data-square="S6" /></td>
+          <td><input type="number" data-row="R4" data-col="C9" data-square="S6" /></td>
+        </tr>
+        <tr>
+          <td><input type="number" data-row="R5" data-col="C1" data-square="S4" /></td>
+          <td><input type="number" data-row="R5" data-col="C2" data-square="S4" /></td>
+          <td><input type="number" data-row="R5" data-col="C3" data-square="S4" /></td>
+  
+          <td><input type="number" data-row="R5" data-col="C4" data-square="S5" /></td>
+          <td><input type="number" data-row="R5" data-col="C5" data-square="S5" /></td>
+          <td><input type="number" data-row="R5" data-col="C6" data-square="S5" /></td>
+  
+          <td><input type="number" data-row="R5" data-col="C7" data-square="S6" /></td>
+          <td><input type="number" data-row="R5" data-col="C8" data-square="S6" /></td>
+          <td><input type="number" data-row="R5" data-col="C9" data-square="S6" /></td>
+        </tr>
+        <tr>
+          <td><input type="number" data-row="R6" data-col="C1" data-square="S4" /></td>
+          <td><input type="number" data-row="R6" data-col="C2" data-square="S4" /></td>
+          <td><input type="number" data-row="R6" data-col="C3" data-square="S4" /></td>
+  
+          <td><input type="number" data-row="R6" data-col="C4" data-square="S5" /></td>
+          <td><input type="number" data-row="R6" data-col="C5" data-square="S5" /></td>
+          <td><input type="number" data-row="R6" data-col="C6" data-square="S5" /></td>
+  
+          <td><input type="number" data-row="R6" data-col="C7" data-square="S6" /></td>
+          <td><input type="number" data-row="R6" data-col="C8" data-square="S6" /></td>
+          <td><input type="number" data-row="R6" data-col="C9" data-square="S6" /></td>
+        </tr>
+        
+        <tr>
+          <td><input type="number" data-row="R7" data-col="C1" data-square="S7" /></td>
+          <td><input type="number" data-row="R7" data-col="C2" data-square="S7" /></td>
+          <td><input type="number" data-row="R7" data-col="C3" data-square="S7" /></td>
+  
+          <td><input type="number" data-row="R7" data-col="C4" data-square="S8" /></td>
+          <td><input type="number" data-row="R7" data-col="C5" data-square="S8" /></td>
+          <td><input type="number" data-row="R7" data-col="C6" data-square="S8" /></td>
+  
+          <td><input type="number" data-row="R7" data-col="C7" data-square="S9" /></td>
+          <td><input type="number" data-row="R7" data-col="C8" data-square="S9" /></td>
+          <td><input type="number" data-row="R7" data-col="C9" data-square="S9" /></td>
+        </tr>
+        <tr>
+          <td><input type="number" data-row="R8" data-col="C1" data-square="S7" /></td>
+          <td><input type="number" data-row="R8" data-col="C2" data-square="S7" /></td>
+          <td><input type="number" data-row="R8" data-col="C3" data-square="S7" /></td>
+  
+          <td><input type="number" data-row="R8" data-col="C4" data-square="S8" /></td>
+          <td><input type="number" data-row="R8" data-col="C5" data-square="S8" /></td>
+          <td><input type="number" data-row="R8" data-col="C6" data-square="S8" /></td>
+  
+          <td><input type="number" data-row="R8" data-col="C7" data-square="S9" /></td>
+          <td><input type="number" data-row="R8" data-col="C8" data-square="S9" /></td>
+          <td><input type="number" data-row="R8" data-col="C9" data-square="S9" /></td>
+        </tr>
+        <tr>
+          <td><input type="number" data-row="R9" data-col="C1" data-square="S7" /></td>
+          <td><input type="number" data-row="R9" data-col="C2" data-square="S7" /></td>
+          <td><input type="number" data-row="R9" data-col="C3" data-square="S7" /></td>
+  
+          <td><input type="number" data-row="R9" data-col="C4" data-square="S8" /></td>
+          <td><input type="number" data-row="R9" data-col="C5" data-square="S8" /></td>
+          <td><input type="number" data-row="R9" data-col="C6" data-square="S8" /></td>
+  
+          <td><input type="number" data-row="R9" data-col="C7" data-square="S9" /></td>
+          <td><input type="number" data-row="R9" data-col="C8" data-square="S9" /></td>
+          <td><input type="number" data-row="R9" data-col="C9" data-square="S9" /></td>
+        </tr>
+      </tbody>
+    </table>
+  </main>
+  
+  <script src='./scripts.js'></script>
+</body>
+</html>
